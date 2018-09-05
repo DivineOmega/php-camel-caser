@@ -20,6 +20,8 @@ After installing PHP Camel Caser, the new function are available straight away.
 Some example usage is shown below.
 
 ```php
+require_once __DIR__.'/vendor/autoload.php';
+
 strReplace('c', 'b', 'cat');                // bat
 strWordCount("Hello world!");               // 2
 inArray('Picard', ['Picard', 'Janeway']);   // true
