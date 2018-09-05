@@ -1,2 +1,3 @@
 # PHP Camel Caser
-This package let's you use built-in PHP function in camel case.
+
+This package lets you use built-in PHP functions in camel case.
