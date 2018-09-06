@@ -15,7 +15,7 @@ If you have never used the Composer dependency manager before, head to the [Comp
 
 ## Usage
 
-After installing PHP Camel Caser, the new function are available straight away.
+After installing PHP Camel Caser, the new functions are available straight away.
 
 Some example usage is shown below.
 
