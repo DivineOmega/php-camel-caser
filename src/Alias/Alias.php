@@ -27,8 +27,8 @@ class Alias implements AliasInterface
         string $alias,
         ReflectionFunctionAbstract $reflection
     ) {
-        $this->original = $original;
-        $this->alias = $alias;
+        $this->original   = $original;
+        $this->alias      = $alias;
         $this->reflection = $reflection;
     }
 
