@@ -7,14 +7,43 @@
         {
             "name": "Jordan Hall",
             "email": "jordan@hall05.co.uk"
+        },
+        {
+            "name": "Jan-Marten de Boer",
+            "email": "github@johmanx.com"
         }
     ],
     "require": {
-        "illuminate/support": ">=4.2"
+        "php": "^7.1",
+        "ext-json": "^7.1"
+    },
+    "require-dev": {
+        "mediact/testing-suite": "@stable",
+        "kint-php/kint": "^2.2"
     },
     "autoload": {
+        "psr-4": {
+            "DivineOmega\\CamelCaser\\": "src"
+        },
         "files": [
-            "./src/camelCaser.php"
+            "autoload.php"
         ]
+    },
+    "extra": {
+        "grumphp": {
+            "config-default-path": "vendor/mediact/testing-suite/config/default/grumphp.yml"
+        }
+    },
+    "archive": {
+        "exclude": [
+            "/.gitignore",
+            "/phpunit.xml",
+            "/phpmd.xml",
+            "/phpstan.neon",
+            "/phpcs.xml"
+        ]
+    },
+    "config": {
+        "sort-packages": true
     }
 }
