@@ -204,6 +204,7 @@ FUNCTION
 
                 $value = $this->getDefaultParameterValue($parameter);
 
+                // @see https://bugs.php.net/bug.php?id=76918
                 if (array_key_exists($name, $carry)) {
                     throw new RuntimeException(
                         sprintf(
@@ -257,6 +258,7 @@ FUNCTION
         ReflectionParameter $parameter
     ): string {
         // Variadic parameter cannot have a default value.
+        // This needs to be checked before isOptional.
         if ($parameter->isVariadic()) {
             return '';
         }

@@ -40,7 +40,8 @@
             "/phpunit.xml",
             "/phpmd.xml",
             "/phpstan.neon",
-            "/phpcs.xml"
+            "/phpcs.xml",
+            "/tests"
         ]
     },
     "config": {
