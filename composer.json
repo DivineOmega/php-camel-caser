@@ -29,6 +29,11 @@
             "autoload.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "DivineOmega\\CamelCaser\\Tests\\": "tests"
+        }
+    },
     "extra": {
         "grumphp": {
             "config-default-path": "vendor/mediact/testing-suite/config/default/grumphp.yml"
