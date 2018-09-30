@@ -11,7 +11,7 @@ use ReflectionFunctionAbstract;
 class AliasFinder implements AliasFinderInterface
 {
     /** @var FunctionFormatterInterface */
-    private $orinalFormatter;
+    private $originalFormatter;
 
     /** @var FunctionFormatterInterface */
     private $aliasFormatter;
@@ -19,15 +19,15 @@ class AliasFinder implements AliasFinderInterface
     /**
      * Constructor.
      *
-     * @param FunctionFormatterInterface $orinalFormatter
+     * @param FunctionFormatterInterface $originalFormatter
      * @param FunctionFormatterInterface $aliasFormatter
      */
     public function __construct(
-        FunctionFormatterInterface $orinalFormatter,
+        FunctionFormatterInterface $originalFormatter,
         FunctionFormatterInterface $aliasFormatter
     ) {
-        $this->orinalFormatter = $orinalFormatter;
-        $this->aliasFormatter  = $aliasFormatter;
+        $this->originalFormatter = $originalFormatter;
+        $this->aliasFormatter    = $aliasFormatter;
     }
 
     /**
@@ -40,24 +40,34 @@ class AliasFinder implements AliasFinderInterface
     public function __invoke(
         ReflectionFunctionAbstract ...$functions
     ): AliasIteratorInterface {
-        $aliases = [];
+        return new AliasIterator(
+            ...array_values(
+                array_reduce(
+                    $functions,
+                    function (
+                        array $carry,
+                        ReflectionFunctionAbstract $function
+                    ): array {
+                        $original = $this->originalFormatter->__invoke($function);
+                        $alias    = $this->aliasFormatter->__invoke($function);
 
-        foreach ($functions as $function) {
-            $original = $this->orinalFormatter->__invoke($function);
-            $alias    = $this->aliasFormatter->__invoke($function);
+                        if ($alias !== $original
+                            && preg_match('/.*?([^\\\\]+)$/', $alias)
+                            && function_exists($original)
+                            && !function_exists($alias)
+                        ) {
+                            $carry[$alias] = new Alias(
+                                $original,
+                                $alias,
+                                $function
+                            );
+                        }
 
-            if ($alias === $original
-                || empty($alias)
-                || !preg_match('/.*?([^\\\\]+)$/', $alias)
-                || !function_exists($original)
-                || function_exists($alias)
-            ) {
-                continue;
-            }
-
-            $aliases[] = new Alias($original, $alias, $function);
-        }
-
-        return new AliasIterator(...$aliases);
+                        return $carry;
+                    },
+                    []
+                )
+            )
+        );
     }
 }
