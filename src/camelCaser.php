@@ -1,40 +1,42 @@
 <?php
 
-if (!function_exists('camelCaser')) {
+if (! function_exists('camelCaser')) {
 
     function camelCaser()
     {
 
-        $functions = get_defined_functions();
-        $internalFunctions = $functions['internal'];
+        $functions = get_defined_functions(true);
+        $tempInclude = tmpfile();
+        $defined = [];
+        $code = null;
 
-        foreach ($internalFunctions as $funcName) {
+        foreach ($functions['internal'] as $funcName)
+        {
+            $newFuncName = str_replace('_', null, $funcName);
 
-            $newFuncNames = [];
-            $newFuncNames[] = camel_case($funcName);
+            if (! function_exists($newFuncName) && strlen($funcName) > 3 && ! isset($defined[$newFuncName])) {
+                
+                $defined[$newFuncName] = true;
 
-            foreach ($newFuncNames as $newFuncName) {
-
-                if (!$newFuncName) {
-                    continue;
-                }
-
-                if (!function_exists($newFuncName)) {
-
-                    eval('
-                        
-                        function ' . $newFuncName . '() {
-                            $args = func_get_args();
-                            return call_user_func_array(\'' . $funcName . '\', $args);
-                        };
-            
-                    ');
-
-                }
+                $code .= "
+                    function {$newFuncName}() 
+                    { 
+                        return {$funcName}(... func_get_args());
+                    }
+                ";
             }
         }
+
+        if ($code !== null) {
+            
+            $namespace = defined('CAMEL_CASER_NAMESPACE') ? 'namespace ' . CAMEL_CASER_NAMESPACE . '; ' : '';
+            fwrite($tempInclude, '<?php '. $namespace . '; '. $code . PHP_EOL);
+            require(stream_get_meta_data($tempInclude)['uri']);
+        }
+
+        fclose($tempInclude);
+
     }
 
     camelCaser();
-
 }
