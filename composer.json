@@ -9,9 +9,6 @@
             "email": "jordan@hall05.co.uk"
         }
     ],
-    "require": {
-        "illuminate/support": ">=4.2"
-    },
     "autoload": {
         "files": [
             "./src/camelCaser.php"
