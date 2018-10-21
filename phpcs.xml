@@ -7,4 +7,8 @@
     <description>PHPCS</description>
     <!--<exclude-pattern>path/to/exclude/*</exclude-pattern>-->
     <rule ref="./vendor/mediact/coding-standard/src/MediaCT"/>
+
+    <rule ref="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps">
+        <exclude-pattern>tests/Fixture/functions.php</exclude-pattern>
+    </rule>
 </ruleset>

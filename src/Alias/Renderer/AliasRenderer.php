@@ -7,6 +7,7 @@ use DivineOmega\CamelCaser\Formatter\CamelCaseTrait;
 use ReflectionParameter;
 use ReflectionType;
 use RuntimeException;
+use Throwable;
 
 class AliasRenderer implements AliasRendererInterface
 {
@@ -227,9 +228,7 @@ FUNCTION
                             : '',
                         $parameter->isVariadic() ? '...' : '',
                         $name,
-                        empty($value)
-                            ? ''
-                            : sprintf(' = %s', $value)
+                        empty($value) ? '' : sprintf(' = %s', $value)
                     )
                 );
 
@@ -263,23 +262,26 @@ FUNCTION
             return '';
         }
 
-        if ($parameter->isOptional()) {
-            return 'null';
-        }
-
         // Cannot determine default value for internal functions.
         if ($parameter->getDeclaringFunction()->isInternal()) {
             return '';
         }
 
-        if ($parameter->isDefaultValueConstant()) {
-            return $parameter->getDefaultValueConstantName();
+        try {
+            if ($parameter->isDefaultValueConstant()) {
+                return $parameter->getDefaultValueConstantName();
+            }
+
+            if ($parameter->isDefaultValueAvailable()) {
+                return json_encode($parameter->getDefaultValue());
+            }
+        } catch (Throwable $exception) {
+            return '';
         }
 
-        if ($parameter->isDefaultValueAvailable()) {
-            return json_encode($parameter->getDefaultValue());
-        }
-
+        // @codeCoverageIgnoreStart
+        // No scenario known for this state.
         return '';
+        // @codeCoverageIgnoreEnd
     }
 }
