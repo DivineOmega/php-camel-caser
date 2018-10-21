@@ -1,40 +1,48 @@
 <?php
 
-if (!function_exists('camelCaser')) {
+if (! function_exists('camelCaser')) {
 
     function camelCaser()
     {
 
-        $functions = get_defined_functions();
-        $internalFunctions = $functions['internal'];
+        $functions = get_defined_functions(true);
+        $filePath = __DIR__ . DIRECTORY_SEPARATOR . 'camelCaserFunctions.php';
+        $fileRes = fopen($filePath, 'w');
+        $defined = [];
+        $code = null;
 
-        foreach ($internalFunctions as $funcName) {
+        foreach ($functions['internal'] as $funcName)
+        {
+            $newFuncName = str_replace('_', null, $funcName);
 
-            $newFuncNames = [];
-            $newFuncNames[] = camel_case($funcName);
+            if (! function_exists($newFuncName) && strlen($funcName) > 3 && ! isset($defined[$newFuncName])) {
 
-            foreach ($newFuncNames as $newFuncName) {
+                $defined[$newFuncName] = true;
 
-                if (!$newFuncName) {
-                    continue;
-                }
-
-                if (!function_exists($newFuncName)) {
-
-                    eval('
-                        
-                        function ' . $newFuncName . '() {
-                            $args = func_get_args();
-                            return call_user_func_array(\'' . $funcName . '\', $args);
-                        };
-            
-                    ');
-
-                }
+                $code .= "
+                    function {$newFuncName}()
+                    {
+                        return {$funcName}(... func_get_args());
+                    }
+                ";
             }
         }
+
+        if ($code !== null) {
+
+            $namespace = getenv('CAMEL_CASER_NAMESPACE');
+
+            if ($namespace) {
+                $namespace = "namespace {$namespace}; ";
+            }
+
+            fwrite($fileRes, '<?php '. $namespace . $code . PHP_EOL);
+            require($filePath);
+        }
+
+        fclose($fileRes);
+
     }
 
     camelCaser();
-
 }
