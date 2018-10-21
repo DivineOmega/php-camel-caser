@@ -15,12 +15,12 @@ if (! function_exists('camelCaser')) {
             $newFuncName = str_replace('_', null, $funcName);
 
             if (! function_exists($newFuncName) && strlen($funcName) > 3 && ! isset($defined[$newFuncName])) {
-                
+
                 $defined[$newFuncName] = true;
 
                 $code .= "
-                    function {$newFuncName}() 
-                    { 
+                    function {$newFuncName}()
+                    {
                         return {$funcName}(... func_get_args());
                     }
                 ";
@@ -28,9 +28,9 @@ if (! function_exists('camelCaser')) {
         }
 
         if ($code !== null) {
-            
+
             $namespace = defined('CAMEL_CASER_NAMESPACE') ? 'namespace ' . CAMEL_CASER_NAMESPACE . '; ' : '';
-            fwrite($tempInclude, '<?php '. $namespace . '; '. $code . PHP_EOL);
+            fwrite($tempInclude, '<?php '. $namespace . $code . PHP_EOL);
             require(stream_get_meta_data($tempInclude)['uri']);
         }
 
