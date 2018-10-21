@@ -2,6 +2,7 @@
 namespace DivineOmega\CamelCaser\Tests\Fixture;
 
 use stdClass;
+
 const FOO = 12;
 
 /**
@@ -11,7 +12,6 @@ const FOO = 12;
  */
 function foo_default_constant_value(int $foo = FOO): void
 {
-
 }
 
 /**
@@ -21,7 +21,6 @@ function foo_default_constant_value(int $foo = FOO): void
  */
 function bar_default_value_available(int $bar = 12): void
 {
-
 }
 
 /**
@@ -31,7 +30,6 @@ function bar_default_value_available(int $bar = 12): void
  */
 function baz_parameter_optional(stdClass $baz = null): void
 {
-
 }
 
 /**
@@ -41,7 +39,6 @@ function baz_parameter_optional(stdClass $baz = null): void
  */
 function quz_parameter_required(stdClass $qux): void
 {
-
 }
 
 /**
@@ -51,5 +48,4 @@ function quz_parameter_required(stdClass $qux): void
  */
 function quu_parameter_nullable(?stdClass $quu): void
 {
-
 }
