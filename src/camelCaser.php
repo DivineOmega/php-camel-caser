@@ -6,7 +6,8 @@ if (! function_exists('camelCaser')) {
     {
 
         $functions = get_defined_functions(true);
-        $tempInclude = tmpfile();
+        $filePath = __DIR__ . DIRECTORY_SEPARATOR . 'camelCaserFunctions.php';
+        $fileRes = fopen($filePath, 'w');
         $defined = [];
         $code = null;
 
@@ -29,12 +30,17 @@ if (! function_exists('camelCaser')) {
 
         if ($code !== null) {
 
-            $namespace = defined('CAMEL_CASER_NAMESPACE') ? 'namespace ' . CAMEL_CASER_NAMESPACE . '; ' : '';
-            fwrite($tempInclude, '<?php '. $namespace . $code . PHP_EOL);
-            require(stream_get_meta_data($tempInclude)['uri']);
+            $namespace = getenv('CAMEL_CASER_NAMESPACE');
+
+            if ($namespace) {
+                $namespace = "namespace {$namespace}; ";
+            }
+
+            fwrite($fileRes, '<?php '. $namespace . $code . PHP_EOL);
+            require($filePath);
         }
 
-        fclose($tempInclude);
+        fclose($fileRes);
 
     }
 
