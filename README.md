@@ -1,5 +1,8 @@
 # 🐪💼 PHP Camel Caser
 
+
+[![Packagist](https://img.shields.io/packagist/dt/divineomega/php-camel-caser.svg)](https://packagist.org/packages/divineomega/php-camel-caser/stats)
+
 This package lets you use built-in PHP functions in camel case.
 
 ## Installation
