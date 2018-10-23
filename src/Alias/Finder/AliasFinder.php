@@ -27,7 +27,7 @@ class AliasFinder implements AliasFinderInterface
         FunctionFormatterInterface $aliasFormatter
     ) {
         $this->originalFormatter = $originalFormatter;
-        $this->aliasFormatter    = $aliasFormatter;
+        $this->aliasFormatter = $aliasFormatter;
     }
 
     /**
@@ -49,7 +49,7 @@ class AliasFinder implements AliasFinderInterface
                         ReflectionFunctionAbstract $function
                     ): array {
                         $original = $this->originalFormatter->__invoke($function);
-                        $alias    = $this->aliasFormatter->__invoke($function);
+                        $alias = $this->aliasFormatter->__invoke($function);
 
                         if ($alias !== $original
                             && preg_match('/.*?([^\\\\]+)$/', $alias)

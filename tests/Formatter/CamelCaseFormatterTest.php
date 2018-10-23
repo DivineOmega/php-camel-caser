@@ -2,9 +2,9 @@
 
 namespace DivineOmega\CamelCaser\Tests\Formatter;
 
+use DivineOmega\CamelCaser\Formatter\CamelCaseFormatter;
 use DivineOmega\CamelCaser\Tests\CreateFunctionTrait;
 use PHPUnit\Framework\TestCase;
-use DivineOmega\CamelCaser\Formatter\CamelCaseFormatter;
 use ReflectionFunctionAbstract;
 
 /**
@@ -41,16 +41,16 @@ class CamelCaseFormatterTest extends TestCase
         return [
             [
                 $this->createFunction('foo'),
-                'foo'
+                'foo',
             ],
             [
                 $this->createFunction('foo_bar'),
-                'fooBar'
+                'fooBar',
             ],
             [
                 $this->createFunction('fooBar'),
-                'fooBar'
-            ]
+                'fooBar',
+            ],
         ];
     }
 }

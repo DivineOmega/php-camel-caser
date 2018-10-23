@@ -3,11 +3,11 @@
 namespace DivineOmega\CamelCaser\Tests\Alias\Finder;
 
 use DivineOmega\CamelCaser\Alias\AliasIteratorInterface;
+use DivineOmega\CamelCaser\Alias\Finder\AliasFinder;
 use DivineOmega\CamelCaser\Formatter\FunctionFormatterInterface;
 use DivineOmega\CamelCaser\Tests\CreateFunctionTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use DivineOmega\CamelCaser\Alias\Finder\AliasFinder;
 use ReflectionFunctionAbstract;
 
 /**
@@ -74,28 +74,28 @@ class AliasFinderTest extends TestCase
                 0,
                 function (): void {
                     // Nothing to do.
-                }
+                },
             ],
             [
                 0,
                 function (ReflectionFunctionAbstract $function): string {
                     return $function->getName();
                 },
-                $this->createFunction('in_array')
+                $this->createFunction('in_array'),
             ],
             [
                 0,
                 function (): string {
                     return '';
                 },
-                $this->createFunction('in_array')
+                $this->createFunction('in_array'),
             ],
             [
                 1,
                 function (ReflectionFunctionAbstract $function): string {
                     return md5($function->getName());
                 },
-                $this->createFunction('in_array')
+                $this->createFunction('in_array'),
             ],
             [
                 1,
@@ -104,7 +104,7 @@ class AliasFinderTest extends TestCase
                 },
                 $this->createFunction('in_array'),
                 $this->createFunction('in_array'),
-                $this->createFunction('in_array')
+                $this->createFunction('in_array'),
             ],
             [
                 2,
@@ -113,8 +113,8 @@ class AliasFinderTest extends TestCase
                 },
                 $this->createFunction('in_array'),
                 $this->createFunction('array_key_exists'),
-                $this->createFunction('in_array')
-            ]
+                $this->createFunction('in_array'),
+            ],
         ];
     }
 }

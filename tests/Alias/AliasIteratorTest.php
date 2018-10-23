@@ -3,8 +3,8 @@
 namespace DivineOmega\CamelCaser\Tests\Alias;
 
 use DivineOmega\CamelCaser\Alias\AliasInterface;
-use PHPUnit\Framework\TestCase;
 use DivineOmega\CamelCaser\Alias\AliasIterator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \DivineOmega\CamelCaser\Alias\AliasIterator
@@ -40,8 +40,8 @@ class AliasIteratorTest extends TestCase
             [
                 $this->createMock(AliasInterface::class),
                 $this->createMock(AliasInterface::class),
-                $this->createMock(AliasInterface::class)
-            ]
+                $this->createMock(AliasInterface::class),
+            ],
         ];
     }
 }

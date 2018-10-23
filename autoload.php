@@ -23,9 +23,9 @@ $internalFunctions = array_map(
     get_defined_functions(EXCLUDE_DISABLED)['internal'] ?? []
 );
 
-$hasher  = new Md5FunctionHasher();
+$hasher = new Md5FunctionHasher();
 $storage = sprintf(
-    __DIR__ . '/aliases.%s.php',
+    __DIR__.'/aliases.%s.php',
     $hasher(...$internalFunctions)
 );
 
@@ -39,7 +39,7 @@ if (!file_exists($storage)) {
         )
     );
 
-    $aliases  = $finder(...$internalFunctions);
+    $aliases = $finder(...$internalFunctions);
     $renderer = new AliasRenderer();
 
     try {
@@ -58,6 +58,7 @@ try {
     require_once $storage;
 } catch (Throwable $exception) {
     unlink($storage);
+
     throw new RuntimeException(
         'Failed to register aliases for internal functions!',
         0,

@@ -2,8 +2,8 @@
 
 namespace DivineOmega\CamelCaser\Tests\Alias;
 
-use PHPUnit\Framework\TestCase;
 use DivineOmega\CamelCaser\Alias\Alias;
+use PHPUnit\Framework\TestCase;
 use ReflectionFunction;
 
 /**

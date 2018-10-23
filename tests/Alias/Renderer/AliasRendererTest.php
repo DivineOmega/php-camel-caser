@@ -3,10 +3,10 @@
 namespace DivineOmega\CamelCaser\Tests\Alias\Renderer;
 
 use DivineOmega\CamelCaser\Alias\AliasInterface;
+use DivineOmega\CamelCaser\Alias\Renderer\AliasRenderer;
 use DivineOmega\CamelCaser\Formatter\CamelCaseTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use DivineOmega\CamelCaser\Alias\Renderer\AliasRenderer;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
 
@@ -106,9 +106,9 @@ class AliasRendererTest extends TestCase
                     '\DivineOmega\CamelCaser\Tests\Fixture\bar_default_value_available',
                     '\DivineOmega\CamelCaser\Tests\Fixture\baz_parameter_optional',
                     '\DivineOmega\CamelCaser\Tests\Fixture\quz_parameter_required',
-                    '\DivineOmega\CamelCaser\Tests\Fixture\quu_parameter_nullable'
+                    '\DivineOmega\CamelCaser\Tests\Fixture\quu_parameter_nullable',
                 ]
-            )
+            ),
         ];
     }
 }

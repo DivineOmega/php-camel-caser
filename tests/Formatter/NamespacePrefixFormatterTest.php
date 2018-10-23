@@ -3,10 +3,10 @@
 namespace DivineOmega\CamelCaser\Tests\Formatter;
 
 use DivineOmega\CamelCaser\Formatter\FunctionFormatterInterface;
+use DivineOmega\CamelCaser\Formatter\NamespacePrefixFormatter;
 use DivineOmega\CamelCaser\Tests\CreateFunctionTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use DivineOmega\CamelCaser\Formatter\NamespacePrefixFormatter;
 use ReflectionFunctionAbstract;
 
 /**
@@ -23,7 +23,7 @@ class NamespacePrefixFormatterTest extends TestCase
      */
     public function testConstructor(): void
     {
-        /** @noinspection PhpParamsInspection */
+        /* @noinspection PhpParamsInspection */
         $this->assertInstanceOf(
             NamespacePrefixFormatter::class,
             new NamespacePrefixFormatter(
@@ -48,7 +48,7 @@ class NamespacePrefixFormatterTest extends TestCase
     ): void {
         /** @var FunctionFormatterInterface|MockObject $formatter */
         $formatter = $this->createMock(FunctionFormatterInterface::class);
-        $subject   = new NamespacePrefixFormatter($formatter);
+        $subject = new NamespacePrefixFormatter($formatter);
 
         $formatter
             ->expects(self::once())
@@ -71,12 +71,12 @@ class NamespacePrefixFormatterTest extends TestCase
         return [
             [
                 $this->createFunction('foo'),
-                '\FOO'
+                '\FOO',
             ],
             [
                 $this->createFunction('Foo\Bar\baz'),
-                '\Foo\Bar\BAZ'
-            ]
+                '\Foo\Bar\BAZ',
+            ],
         ];
     }
 }

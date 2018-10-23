@@ -22,10 +22,10 @@ class AliasRenderer implements AliasRendererInterface
      */
     public function __invoke(AliasInterface ...$aliases): string
     {
-        $code = '<?php' . PHP_EOL;
+        $code = '<?php'.PHP_EOL;
 
         foreach ($this->groupNamespaces(...$aliases) as $namespace => $group) {
-            $code .= sprintf('namespace %s {', $namespace) . PHP_EOL;
+            $code .= sprintf('namespace %s {', $namespace).PHP_EOL;
 
             foreach ($group as $alias) {
                 try {
@@ -36,7 +36,7 @@ class AliasRenderer implements AliasRendererInterface
                 }
             }
 
-            $code .= '}' . PHP_EOL;
+            $code .= '}'.PHP_EOL;
         }
 
         return $code;
@@ -55,6 +55,7 @@ class AliasRenderer implements AliasRendererInterface
             $aliases,
             function (array $carry, AliasInterface $alias): array {
                 $carry[$alias->getReflection()->getNamespaceName()][] = $alias;
+
                 return $carry;
             },
             []
@@ -105,7 +106,7 @@ FUNCTION
                 str_repeat(' ', 8),
                 ...$alias->getReflection()->getParameters()
             )
-        ) . PHP_EOL;
+        ).PHP_EOL;
     }
 
     /**
@@ -126,7 +127,7 @@ FUNCTION
                 string $carry,
                 ReflectionParameter $parameter
             ) use ($prefix): string {
-                return $carry . PHP_EOL . $prefix . sprintf(
+                return $carry.PHP_EOL.$prefix.sprintf(
                     '@param %s %s$%s',
                     $this->renderTypeDoc($parameter->getType()),
                     $parameter->isVariadic() ? '...' : '',
@@ -157,7 +158,7 @@ FUNCTION
                 $types[] = 'null';
             }
 
-            $types[] = (string)$type;
+            $types[] = (string) $type;
         }
 
         return implode('|', $types);
@@ -185,9 +186,9 @@ FUNCTION
      * @param string              $indent
      * @param ReflectionParameter ...$parameters
      *
-     * @return string
-     *
      * @throws RuntimeException When duplicate parameters are encountered.
+     *
+     * @return string
      */
     private function renderParameters(
         string $indent,
@@ -216,7 +217,7 @@ FUNCTION
                     );
                 }
 
-                $carry[$name] = $indent . '    '. trim(
+                $carry[$name] = $indent.'    '.trim(
                     sprintf(
                         '%1$s %2$s$%3$s%4$s',
                         $parameter->hasType()
@@ -237,10 +238,10 @@ FUNCTION
             []
         );
 
-        $list = implode(',' . PHP_EOL, $list);
+        $list = implode(','.PHP_EOL, $list);
 
         if (strlen($list) > 0) {
-            $list = PHP_EOL . $list . PHP_EOL . $indent;
+            $list = PHP_EOL.$list.PHP_EOL.$indent;
         }
 
         return $list;

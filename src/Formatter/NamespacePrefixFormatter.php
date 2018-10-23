@@ -11,6 +11,7 @@ class NamespacePrefixFormatter implements FunctionFormatterInterface
 
     /**
      * Constructor.
+     *
      * @param FunctionFormatterInterface $formatter
      */
     public function __construct(FunctionFormatterInterface $formatter)

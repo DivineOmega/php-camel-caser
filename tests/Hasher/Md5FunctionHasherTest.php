@@ -2,9 +2,9 @@
 
 namespace DivineOmega\CamelCaser\Tests\Hasher;
 
+use DivineOmega\CamelCaser\Hasher\Md5FunctionHasher;
 use DivineOmega\CamelCaser\Tests\CreateFunctionTrait;
 use PHPUnit\Framework\TestCase;
-use DivineOmega\CamelCaser\Hasher\Md5FunctionHasher;
 use ReflectionFunctionAbstract;
 
 /**
@@ -42,20 +42,20 @@ class Md5FunctionHasherTest extends TestCase
             ['d41d8cd98f00b204e9800998ecf8427e'],
             [
                 'acbd18db4cc2f85cedef654fccc4a4d8',
-                $this->createFunction('foo')
+                $this->createFunction('foo'),
             ],
             [
                 'c0c27d0b79228a06ef81a8111136edea',
                 $this->createFunction('foo'),
                 $this->createFunction('bar'),
-                $this->createFunction('baz')
+                $this->createFunction('baz'),
             ],
             [
                 'c0c27d0b79228a06ef81a8111136edea',
                 $this->createFunction('baz'),
                 $this->createFunction('bar'),
-                $this->createFunction('foo')
-            ]
+                $this->createFunction('foo'),
+            ],
         ];
     }
 }
