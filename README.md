@@ -1,5 +1,6 @@
 # 🐪💼 PHP Camel Caser
 
+[![Build Status](https://travis-ci.org/DivineOmega/php-camel-caser.svg?branch=master)](https://travis-ci.org/DivineOmega/php-camel-caser)
 [![StyleCI](https://github.styleci.io/repos/147511192/shield?branch=master)](https://github.styleci.io/repos/147511192)
 [![Packagist](https://img.shields.io/packagist/dt/divineomega/php-camel-caser.svg)](https://packagist.org/packages/divineomega/php-camel-caser/stats)
 
