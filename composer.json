@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "ext-json": "^1.6"
+        "ext-json": ">=1.5"
     },
     "require-dev": {
         "mediact/testing-suite": "@stable",
