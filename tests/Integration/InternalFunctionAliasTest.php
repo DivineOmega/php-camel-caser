@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionFunction;
 use ReflectionParameter;
 use Throwable;
-use const DivineOmega\CamelCaser\EXCLUDE_DISABLED;
+use const DivineOmega\CamelCaser\EXCLUDE_DISABLED_FUNCTIONS;
 
 /**
  * Assert that internal functions get a camel cased alias, when applicable.
@@ -58,7 +58,7 @@ class InternalFunctionAliasTest extends TestCase
     public function functionProvider(): array
     {
         return array_reduce(
-            get_defined_functions(EXCLUDE_DISABLED)['internal'] ?? [],
+            get_defined_functions(EXCLUDE_DISABLED_FUNCTIONS)['internal'] ?? [],
             function (array $carry, string $function): array {
                 $alias = self::camelCase($function);
 
