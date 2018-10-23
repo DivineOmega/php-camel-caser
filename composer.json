@@ -33,7 +33,9 @@
         "psr-4": {
             "DivineOmega\\CamelCaser\\Tests\\": "tests"
         },
-        "files": ["tests/Fixture/functions.php"]
+        "files": [
+            "tests/Fixture/functions.php"
+        ]
     },
     "extra": {
         "grumphp": {
