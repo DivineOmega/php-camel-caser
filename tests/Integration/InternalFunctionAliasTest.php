@@ -2,12 +2,12 @@
 
 namespace DivineOmega\CamelCaser\Tests\Integration;
 
-use const DivineOmega\CamelCaser\EXCLUDE_DISABLED;
 use DivineOmega\CamelCaser\Formatter\CamelCaseTrait;
 use PHPUnit\Framework\TestCase;
 use ReflectionFunction;
 use ReflectionParameter;
 use Throwable;
+use const DivineOmega\CamelCaser\EXCLUDE_DISABLED;
 
 /**
  * Assert that internal functions get a camel cased alias, when applicable.
@@ -89,6 +89,7 @@ class InternalFunctionAliasTest extends TestCase
     {
         try {
             $reflection = new ReflectionFunction($function);
+
             return $reflection->isInternal();
         } catch (Throwable $exception) {
             return false;

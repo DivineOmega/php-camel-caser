@@ -1,4 +1,5 @@
 <?php
+
 namespace DivineOmega\CamelCaser\Tests\Fixture;
 
 use stdClass;

@@ -2,8 +2,8 @@
 
 namespace DivineOmega\CamelCaser\Tests\Formatter;
 
-use PHPUnit\Framework\TestCase;
 use DivineOmega\CamelCaser\Formatter\CamelCaseTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \DivineOmega\CamelCaser\Formatter\CamelCaseTrait
@@ -39,7 +39,7 @@ class CamelCaseTraitTest extends TestCase
             ['fooBar', 'fooBar'],
             ['foo-bar_bazQux', 'fooBarBazQux'],
             ['FOOBAR', 'fOOBAR'],
-            ['FOO-BAR', 'fOOBAR']
+            ['FOO-BAR', 'fOOBAR'],
         ];
     }
 }
