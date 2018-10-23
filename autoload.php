@@ -14,13 +14,13 @@ use SplFileObject;
 use Throwable;
 
 const INCLUDE_DISABLED = false;
-const EXCLUDE_DISABLED = true;
+const EXCLUDE_DISABLED_FUNCTIONS = true;
 
 $internalFunctions = array_map(
     function (string $function) : ReflectionFunction {
         return new ReflectionFunction($function);
     },
-    get_defined_functions(EXCLUDE_DISABLED)['internal'] ?? []
+    get_defined_functions(EXCLUDE_DISABLED_FUNCTIONS)['internal'] ?? []
 );
 
 $hasher = new Md5FunctionHasher();
