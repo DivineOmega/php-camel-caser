@@ -50,7 +50,8 @@
             "/phpmd.xml",
             "/phpstan.neon",
             "/phpcs.xml",
-            "/tests"
+            "/tests",
+            "/grumphp.yml"
         ]
     },
     "config": {
